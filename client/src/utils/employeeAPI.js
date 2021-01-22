@@ -1,12 +1,21 @@
-var faker = require('faker'); // Faker.js
+import axios from "axios";
 
-api.customer  = {
-    id:    random.special(4, 8),
-    name:  faker.name.findName(),
-    phone: faker.phone.phoneNumber("(###) ###-####"),
-    address: {
-        street: faker.address.streetAddress(),
-        city: faker.address.city(),
-        state: faker.address.state(),
+export default {
+    // Gets all employees
+    getEmployees: function () {
+        return axios.get("/api/employees");
+    },
+    sortEmployees: function (order) {
+        //gets all employees and sorts them
+        return axios.get("/api/employees/sort/" + order);
+    },
+    // Filters for employees with the given name
+    filterEmployees: function (name) {
+        console.log("filter called");
+        return axios.get("/api/employees/filter/" + name);
+    },
+    // Gets the employee with the given id
+    getEmployee: function (id) {
+        return axios.get("/api/employees/" + id);
     }
 };
